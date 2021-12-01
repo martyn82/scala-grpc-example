@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package com.github.martyn82.greeter.grpc;
+
+option java_multiple_files = true;
+
+service GreeterService {
+  rpc SayHello(SayHelloRequest) returns (SayHelloResponse);
+
+  rpc GetPopularity(GetPopularityRequest) returns (GetPopularityResponse);
+}
+
+message SayHelloRequest {
+  string name = 1;
+}
+
+message SayHelloResponse {
+  string greeting = 1;
+}
+
+message GetPopularityRequest {
+  string name = 1;
+}
+
+message GetPopularityResponse {
+  string name = 1;
+  int64 count = 2;
+}
