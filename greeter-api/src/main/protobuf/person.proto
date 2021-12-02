@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+import "gdpr.proto";
+
+package com.github.martyn82.person;
+
+option java_multiple_files = true;
+
+message Person {
+  string user_id      = 1 [(gdpr.data_subject_id) = {}];
+  string name         = 2 [(gdpr.personal_data) = {replacement: {fixed_value: RANDOM}}];
+  string user_type    = 3;
+}

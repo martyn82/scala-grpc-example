@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+import "google/protobuf/descriptor.proto";
+
+package com.github.martyn82.gdpr;
+
+option java_multiple_files = true;
+
+extend google.protobuf.FieldOptions {
+  DataSubjectId data_subject_id = 50001;
+  PersonalData personal_data = 50002;
+}
+
+message DataSubjectId {
+  string group = 1;
+}
+
+message PersonalData {
+  enum Scope {
+    DEFAULT = 0;
+    KEY = 1;
+    VALUE = 2;
+    BOTH = 3;
+  }
+
+  string group = 1;
+  Scope scope = 2;
+  Replacement replacement = 3;
+}
+
+message Replacement {
+  enum Fixed {
+    EMPTY = 0;
+    RANDOM = 1;
+  }
+
+  oneof replacement {
+    Fixed fixed_value = 1;
+    string custom_value = 2;
+  }
+}
